@@ -452,28 +452,36 @@
     </section>
   </main>
 
-  <!-- SCRIPT: Pause/Play Toggle + Scroll-Down -->
   <script>
-    const heroVideo = document.getElementById('heroVideo');
-    const toggleButton = document.getElementById('toggleButton');
-    const scrollArrow = document.getElementById('scrollArrow');
 
-    toggleButton.addEventListener('click', () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroVideo = document.getElementById('heroVideo');
+      const toggleButton = document.getElementById('toggleButton');
+      const scrollArrow = document.getElementById('scrollArrow');
+
+
       if (heroVideo.paused) {
         heroVideo.play();
-        toggleButton.textContent = 'Pause';
-      } else {
-        heroVideo.pause();
-        toggleButton.textContent = 'Play';
       }
-    });
 
-    scrollArrow.addEventListener('click', () => {
-      document.querySelector('.info-section').scrollIntoView({
-        behavior: 'smooth'
+      toggleButton.addEventListener('click', () => {
+        if (heroVideo.paused) {
+          heroVideo.play();
+          toggleButton.textContent = 'Pause';
+        } else {
+          heroVideo.pause();
+          toggleButton.textContent = 'Play';
+        }
+      });
+
+      scrollArrow.addEventListener('click', () => {
+        document.querySelector('.info-section').scrollIntoView({
+          behavior: 'smooth'
+        });
       });
     });
   </script>
+
 </body>
 
 <section class="guarantee-section">
