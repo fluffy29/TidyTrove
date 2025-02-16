@@ -5,92 +5,512 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TidyTrove - Home</title>
-  <link rel="stylesheet" href="styles/global.css" />
-  <link rel="stylesheet" href="styles/components/buttons.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" />
-  <link rel="stylesheet" href="styles/components/navbar.css" />
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Dancing+Script:wght@700&display=swap" />
+
+  <style>
+    /* RESET / BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+      background-color: #fafafa;
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    header {
+      background-color: #1e1e1e;
+      /* Dark background */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* LOGO on the left */
+    .navbar-logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    /* NAV MENU in the middle */
+    .navbar-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin-left: 2rem;
+      /* space between logo and links */
+    }
+
+    .navbar-menu li a {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      padding: 0.25rem 0;
+      position: relative;
+    }
+
+    /* Underline effect on hover */
+    .navbar-menu li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background: #52dab4;
+      /* accent teal underline */
+      transition: width 0.3s ease;
+    }
+
+    .navbar-menu li a:hover::after {
+      width: 100%;
+    }
+
+    /* RIGHT SECTION */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-left: auto;
+    }
+
+    .phone-link {
+      color: #52dab4;
+      /* teal accent for phone number */
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .phone-link:hover {
+      color: #fff;
+    }
+
+    /* PRIMARY BUTTON in the navbar */
+    .btn-primary {
+      background-color: #52dab4;
+      /* Teal accent */
+      color: #1e1e1e;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* HERO SECTION (VIDEO BACKGROUND) */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      /* Full screen hero */
+      overflow: hidden;
+    }
+
+    .hero-bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Pause/Play button */
+    .video-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 3;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .video-toggle:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* HERO CONTENT */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #fff;
+      padding: 0 1rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-content h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+
+    /* Scroll-down arrow */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 3;
+      opacity: 0.8;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .scroll-down:hover {
+      opacity: 1;
+      transform: translateX(-50%) translateY(3px);
+    }
+
+    /* INFO SECTION */
+    .info-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .info-left,
+    .info-right {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .info-left h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .info-left p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      display: inline-block;
+      background-color: #ecf9f5;
+      border-left: 4px solid #52dab4;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-right img {
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .navbar-menu {
+        margin-left: 0;
+        gap: 1.5rem;
+      }
+
+      .navbar-right {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+
+      .info-section {
+        flex-direction: column;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #fff;
+      border-top: 1px solid #eee;
+      margin-top: 3rem;
+    }
+
+    .guarantee-section {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin-top: 6rem;
+      /* only the top margin is changed */
+      margin-bottom: 3rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1rem;
+      gap: 2rem;
+    }
+
+
+
+    .guarantee-left {
+      flex: 1;
+      /* fill available space */
+      min-width: 300px;
+    }
+
+    .guarantee-left h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .guarantee-left p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .guarantee-left h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .underline {
+      width: 120px;
+      border: 2px solid #16a085;
+      /* or your brand color */
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .guarantee-right {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .guarantee-images {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .top-img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .bottom-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .worry-graphic,
+    .family-img {
+      width: 50%;
+      /* each image half the row */
+      height: auto;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    /* Mobile: stack everything */
+    @media (max-width: 768px) {
+      .guarantee-section {
+        flex-direction: column;
+      }
+
+      .bottom-row {
+        flex-direction: column;
+      }
+
+      .worry-graphic,
+      .family-img {
+        width: 100%;
+        /* stack images one on top of another */
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- HEADER / NAVBAR -->
   <header>
     <nav class="navbar">
-      <!-- Left side: Logo -->
       <a href="index.html" class="navbar-logo">
-        <img src="images/logo.jpg" alt="TidyTrove Logo" />
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/034/961/433/small/a-colorful-swirl-logo-on-a-transparent-background-png.png"
+          alt="TidyTrove Logo" />
       </a>
-
       <ul class="navbar-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
-
-      <!-- Optional Right Section -->
       <div class="navbar-right">
-        <!-- Example phone link -->
         <a href="tel:555-555-5555" class="phone-link">(555) 555-5555</a>
-
-        <!-- Or a CTA button -->
         <a href="services.html" class="btn-primary">Request a Quote</a>
       </div>
     </nav>
   </header>
 
+  <!-- MAIN CONTENT -->
   <main>
+    <!-- HERO SECTION with background video + toggle -->
     <section class="hero">
-      <h1>Welcome to TidyTrove</h1>
-      <p>Your treasure trove of cleaning excellence.</p>
-      <a href="services.html" class="btn-primary">Book Now</a>
+      <video id="heroVideo" class="hero-bg-video" autoplay muted loop playsinline>
+        <source src="images/maid.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <button class="video-toggle" id="toggleButton">Pause</button>
+
+      <div class="hero-content">
+        <h1>Welcome to TidyTrove</h1>
+        <p>Reimagine your free time. Our highly trained cleaning specialists create a peaceful, pristine haven in every
+          home.</p>
+        <a href="services.html" class="btn-primary">Book Now</a>
+      </div>
+
+      <!-- Scroll-down arrow -->
+      <div class="scroll-down" id="scrollArrow">&#x25BC;</div>
+    </section>
+
+    <!-- TWO-COLUMN INFO SECTION -->
+    <section class="info-section">
+      <div class="info-left">
+        <h2>Reclaim Your Time</h2>
+        <p>
+          Life can be hectic—why lose precious moments to tedious chores?
+          At TidyTrove, we provide seamless, stress-free cleaning solutions
+          so you can enjoy more of what truly matters, whether that's family, friends, or simply some personal downtime.
+        </p>
+        <p>
+          Our eco-friendly products and flexible scheduling ensure your home stays immaculate
+          without disruption. Discover what countless satisfied clients already know: a well-kept space leads to a
+          calmer, happier life.
+        </p>
+        <div class="highlight-box">
+          Relax—We’ve Got This
+        </div>
+      </div>
+      <div class="info-right">
+        <img src="https://i.pinimg.com/originals/77/6a/d8/776ad81e48f5fdab91d0436af12f02c4.gif"
+          alt="Bright, tidy living room" />
+      </div>
     </section>
   </main>
 
-  <style>
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      background: url(https://64.media.tumblr.com/c3adfab4c0cbc39eef88cbcd6bfa80bd/tumblr_mnzunry6XE1s8njeuo1_400.gif) center center no-repeat;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-    }
+  <!-- SCRIPT: Pause/Play Toggle + Scroll-Down -->
+  <script>
+    const heroVideo = document.getElementById('heroVideo');
+    const toggleButton = document.getElementById('toggleButton');
+    const scrollArrow = document.getElementById('scrollArrow');
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
+    toggleButton.addEventListener('click', () => {
+      if (heroVideo.paused) {
+        heroVideo.play();
+        toggleButton.textContent = 'Pause';
+      } else {
+        heroVideo.pause();
+        toggleButton.textContent = 'Play';
+      }
+    });
 
-    .hero>* {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-family: "Dancing Script", cursive;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-  </style>
-
-  <footer>
-    <p>&copy; 2025 TidyTrove</p>
-  </footer>
+    scrollArrow.addEventListener('click', () => {
+      document.querySelector('.info-section').scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
+
+<section class="guarantee-section">
+  <div class="guarantee-left">
+    <h2>Our Worry-Free Guarantee</h2>
+    <p>
+      When you trust your home to the team at TidyTrove, you can rest easy
+      knowing your space is in great hands. You deserve to feel confident
+      knowing you’ll receive consistently flawless results from friendly,
+      trustworthy professionals. TidyTrove provides the relief you’ve been
+      looking for. Our Worry-Free Guarantee reflects our willingness to go
+      the extra mile so your home always feels like a sanctuary.
+      If for any reason you are unhappy with our residential cleaning services,
+      let us know within 24 hours—and we’ll come back and make it right.
+    </p>
+    <h3>Our Guarantee</h3>
+    <hr class="underline" />
+  </div>
+
+  <div class="guarantee-right">
+    <!-- Example images: add or swap as needed -->
+    <div class="guarantee-images">
+      <img
+        src="https://www.parttimecleaner.com.sg/wp-content/uploads/2022/05/Can-We-Use-Part-Time-Maid-For-Dog-Walking-Service.jpg"
+        alt="Dog resting on a clean bed" class="top-img" />
+      <div class="bottom-row">
+        <img
+          src="https://png.pngtree.com/png-vector/20220222/ourmid/pngtree-dont-worry-stars-fear-ink-vector-png-image_26317232.png"
+          alt="Worry-free guarantee graphic" class="worry-graphic" />
+        <img
+          src="https://media.istockphoto.com/id/1302264910/photo/father-helping-son-to-wash-hands-with-soap-at-home-to-stop-spread-of-infection-in-health.jpg?s=612x612&w=0&k=20&c=3yxDvR3K1oey1U6fNw-nxzL3zF59EL9iyTmfIszfx7w="
+          alt="Father and child washing hands" class="family-img" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 </html>
