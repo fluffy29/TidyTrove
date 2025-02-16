@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TidyTrove - Home</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/pages/home.css">
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/components/buttons.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" />
+  <link rel="stylesheet" href="styles/components/navbar.css" />
 </head>
+
 <body>
   <header>
-    <nav>
-      <ul>
+    <nav class="navbar">
+      <!-- Left side: Logo -->
+      <a href="index.html" class="navbar-logo">
+        <img src="images/logo.jpg" alt="TidyTrove Logo" />
+      </a>
+
+      <ul class="navbar-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
+
+      <!-- Optional Right Section -->
+      <div class="navbar-right">
+        <!-- Example phone link -->
+        <a href="tel:555-555-5555" class="phone-link">(555) 555-5555</a>
+
+        <!-- Or a CTA button -->
+        <a href="services.html" class="btn-primary">Request a Quote</a>
+      </div>
     </nav>
   </header>
 
@@ -27,8 +45,52 @@
     </section>
   </main>
 
+  <style>
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      background: url(https://64.media.tumblr.com/c3adfab4c0cbc39eef88cbcd6bfa80bd/tumblr_mnzunry6XE1s8njeuo1_400.gif) center center no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+
   <footer>
-    <p>&copy; 2023 TidyTrove</p>
+    <p>&copy; 2025 TidyTrove</p>
   </footer>
 </body>
+
 </html>

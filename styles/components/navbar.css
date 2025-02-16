@@ -1,0 +1,62 @@
+/* Example: Global reset or standard styling. Adjust as needed. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* White background like Merry Maids */
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd; /* subtle bottom border */
+}
+
+/* Logo Image */
+.navbar-logo img {
+  /* Keep the logo a reasonable size */
+  height: 50px;
+  width: auto;
+}
+
+/* Navbar Menu (the UL) */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* space between items */
+}
+
+/* Menu Items (the LIs and As) */
+.navbar-menu li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+.navbar-menu li a:hover {
+  color: #00796b; /* example brand hover color */
+}
+
+/* Optional Right Section */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phone-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.phone-link:hover {
+  color: #00796b;
+}
